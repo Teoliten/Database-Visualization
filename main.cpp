@@ -1,6 +1,3 @@
-#include "pbPlots.hpp"
-#include "supportLib.hpp"
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -34,17 +31,6 @@ void plotData(const vector<double> data){
 
 int main()
 {
-    RGBABitmapImageReference *imageRef = CreateRGBABitmapImageReference();
-
-    vector<double> x{-2, -1, 0, 1, 2, 3};
-    vector<double> y{-2.6, 1.1, 2.2, 0.7, 1.1, -2.2};
-
-    DrawScatterPlot(imageRef, 600, 400, &x, &y);
-
-    vector<double> *pngData = ConvertToPNG(imageRef->image);
-    WriteToFile(pngData, "plot.png");
-    DeleteImage(imageRef->image);
-
     vector<double> data;
 
     getData(data);
