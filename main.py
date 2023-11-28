@@ -18,7 +18,9 @@ for systemFolder in os.listdir(startPath):
         info_parts.append(systemFolder)
         
         information.append(info_parts)
-print(information)
+
+sorted_information = sorted(information, key=lambda x: x[1])
+print(sorted_information)
 
 #----------------------------------------------------
 
@@ -50,13 +52,27 @@ print("Min Value: ", minValue)
 #----------------------------------------------------
 
 # Plotting with style
-plt.figure(figsize=(10, 6))  # Adjust figure size as needed
-plt.plot(x_labels, data, marker='o', linestyle='-', color='b', label='Non-Deviant data point percentage')
-plt.title('Non-Deviant data point percentage')
-plt.xlabel('Data Points')
+#plt.figure(figsize=(10, 6))  # Adjust figure size as needed
+#plt.plot(x_labels, data, marker='o', linestyle='-', color='b', label='Non-Deviant data point percentage')
+#plt.title('Non-Deviant data point percentage')
+#plt.xlabel('Data Points')
+#plt.ylabel('Percentage')
+#plt.grid(True)
+#plt.legend()
+#plt.show()
+
+#----------------------------------------------------
+# Extracting data for plotting from the sorted information
+x_values = [int(entry[2]) for entry in information]  # Assuming the third element is the system folder
+y_values = [float(entry[0].strip('%')) for entry in information]  # Extracting the percentage as a float
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(x_values, y_values, marker='o', linestyle='-', color='b', label='Percentage Data')
+plt.title('Percentage Data for System Folders (Sorted by Date)')
+plt.xlabel('System Folder')
 plt.ylabel('Percentage')
+plt.xticks(x_values)  # Set x-axis ticks to the exact values in x_values
 plt.grid(True)
 plt.legend()
 plt.show()
-
-#----------------------------------------------------
